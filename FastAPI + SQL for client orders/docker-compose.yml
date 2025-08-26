@@ -1,0 +1,27 @@
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_DB: fastapi_clients_orders
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+      build: .
+      container_name: fastapi-app
+      ports:
+        - "8000:8000"
+      environment:
+        - DATABASE_URL=postgresql://postgres:postgrespassword@postgres-db:5432/fastapi_clients_orders
+      depends_on:
+        - db
+
+volumes:
+  postgres_data:
