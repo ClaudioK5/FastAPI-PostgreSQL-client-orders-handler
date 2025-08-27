@@ -56,10 +56,6 @@ def read_orders(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 def read_customers(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return db.query(models.Customer).offset(skip).limit(limit).all()
 
-@app.get("/")
-def read_root():
-    return {"message": "FastAPI is working"}
-
 @app.get("/generate_report")
 def generate_report(db: Session = Depends(get_db)):
 
@@ -108,4 +104,5 @@ def generate_report(db: Session = Depends(get_db)):
        return {"error": str(e)}
 
     return ai_output
+
 
