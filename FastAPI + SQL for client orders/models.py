@@ -21,5 +21,6 @@ class Order(Base):
     amount = Column(Float)
     timestamp = Column(DateTime, default=datetime.utcnow)
     customer_id = Column(Integer, ForeignKey("customers.id"))
+    price = Column(Float, nullable=True)
 
     customer = relationship("Customer", back_populates="orders")
