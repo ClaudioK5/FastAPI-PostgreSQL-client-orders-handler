@@ -7,6 +7,7 @@ class OrderCreate(BaseModel):
     product_name: str
     amount: float
     customer_id: int
+    price: float
 
 
 class Order(BaseModel):
@@ -16,6 +17,7 @@ class Order(BaseModel):
     amount: float
     timestamp: datetime
     customer_id: int
+    price: float
 
     class Config:
 
